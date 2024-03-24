@@ -1,0 +1,36 @@
+
+
+# Utilizamos la imagen oficial de MySQL desde Docker Hub
+FROM mysql:latest
+
+# Establecemos la contraseña de root para MySQL
+ENV MYSQL_ROOT_PASSWORD=admin123.
+
+# Opcional: podemos crear una base de datos y un usuario al inicio si es necesario
+ENV MYSQL_DATABASE=development
+ENV MYSQL_USER=josese
+ENV MYSQL_PASSWORD=admin123.
+ENV MYSQL_ALLOW_PUBLIC_KEY_RETRIEVAL=true
+
+# Permitimos la conexión desde cualquier host
+ENV MYSQL_ROOT_HOST=%
+
+# Opcional: podemos establecer el puerto en el que MySQL estará escuchando
+# ENV MYSQL_TCP_PORT=3306
+
+# Opcional: podemos copiar un script SQL para inicializar la base de datos
+# COPY ./script.sql /docker-entrypoint-initdb.d/
+
+# Opcional: podemos ajustar la configuración de MySQL si es necesario
+# COPY ./my.cnf /etc/mysql/my.cnf
+
+# Exponemos el puerto 3306 del contenedor al puerto de la máquina local
+EXPOSE 3306
+
+# Via terminal
+# docker run --name mysql_container -e MYSQL_ROOT_PASSWORD=password -d mysql
+# docker exec -it nombre_contenedor_mysql mysql -u root -p
+# docker build -t nombre_imagen_mysql .
+
+#docker command with dockerfile
+#docker build -t nombre_imagen_mysql .
